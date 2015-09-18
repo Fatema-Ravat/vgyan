@@ -1,0 +1,41 @@
+
+Sidebar extra——
+————————
+<h3 class="sidebar"><a href="./issues.php">Previous Issues</h3>
+
+<!--<ul>
+<?php
+$stmt1 = $db->query('SELECT articleTitle, articleID FROM Articles ORDER BY articleID DESC LIMIT 2');
+while($row = $stmt1->fetch()){
+    echo '<li><a href="viewarticle.php?id='.$row['articleID'].'">'.$row['articleTitle'].'</a></li>';
+}
+?>
+</ul> -->
+<hr/>
+<!-- <h3 class="sidebar">Catgories</h3>
+
+<ul>
+<?php
+$stmt2 = $db->query('SELECT catTitle, catID FROM Category ORDER BY catID DESC');
+while($row = $stmt2->fetch()){
+    echo '<li><a href="article-category.php?id='.$row['catID'].'">'.$row['catTitle'].'</a></li>';
+}
+?>
+</ul>
+<hr /> -->
+<h3 class="sidebar"> Subscribe</h3>
+	<ul>
+		<form action="" method="post">
+			<p><input type="text" name="emailID" value="" /> 
+				<input type="submit" name="submit" value="Subscribe" /></p>
+	</ul>
+<hr/>
+
+——————
+Search in header of main page.
+  <form action="search.php" method="GET">
+                <p style="float: right;padding-top: 15%;">
+                <input type="text" name="searchText" value="" /> 
+                 <input type="submit" value="Search" />
+                </p>
+            </form>
