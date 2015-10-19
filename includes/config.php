@@ -3,12 +3,12 @@ ob_start();
 session_start();
 
 //database details
-define('DBHOST','localhost');
+define('DBHOST','127.0.0.1');
 define('DBUSER','root');
 define('DBPASS','ravat123');
 define('DBNAME','patrika');
 
-$db= new PDO("mysql:host=".DBHOST.";dbname=".DBNAME,DBUSER,DBPASS);
+$db= new PDO("mysql:host=127.0.0.1;dbname=".DBNAME,DBUSER,DBPASS);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 //set timezone

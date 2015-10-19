@@ -1,7 +1,7 @@
 <?php 
 require('includes/config.php'); 
 
-$stmt = $db->prepare('SELECT articleID, articleTitle, articleCont, articleDateTime, articleSource FROM articles WHERE articleID = :articleID');
+$stmt = $db->prepare('SELECT articleID, articleTitle, articleCont, articleIssueDate, articleSource,articleImage FROM articles WHERE articleID = :articleID');
 $stmt->execute(array(':articleID' => $_GET['id']));
 $row = $stmt->fetch();
 
@@ -22,31 +22,29 @@ if($row['articleID'] == ''){
 </head>
 <body>
 
-    <div id="wrapper">
+ 
 
         <div id="header">
            <?php require('header.php'); ?> 
         
         </div>
-        <hr />
+       
 
-
-        <div id="main">
+        <div id="wrapper">
         <?php    
             echo '<div>';
-                echo '<h1>'.$row['articleTitle'].'</h1>';
-                echo '<p>Posted on '.date('jS M Y', strtotime($row['articleDateTime'])).'</p>';
+                echo '<h2 style="padding-top: 10%;">'.$row['articleTitle'].'</h2>';
+                echo '<IMG style="float:center" SRC="./images/'.$row['articleImage'].'" ALT="PIC" WIDTH=960 HEIGHT=250>';          
+                echo '<p>Issue date: '.date('jS M Y', strtotime($row['articleIssueDate'])).'</p>';
                 echo '<p>'.$row['articleCont'].'</p>';    
-                echo '<p> Source: '.$row['articleSource'].'</p>';         
+                echo '<p> Source: <a href="'.$row['articleSource'].'">Read from source</a></p>';         
             echo '</div>';
         ?>
-        </div>
+    <!--    </div>
           <div id="sidebar">
             <?php require('sidebar.php'); ?>
         </div>
-       
-    </div>
-
+  -->     
 
 </body>
 </html>

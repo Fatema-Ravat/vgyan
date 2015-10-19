@@ -14,29 +14,26 @@ require('includes/config.php'); ?>
            <?php require('header.php'); ?> 
         
         </div>
-      
+        
 
         <div id="wrapper">
 
-          <!--  <ul>
-            <form action="search.php" method="GET">
-            <p><input type="text" name="searchText" value=<?php echo $_GET['searchText'] ?> /> 
+            <ul>
+            <form action="searchbydate.php" method="GET">
+            <p><input type="date" name="searchText" value=<?php echo $_GET['searchText'] ?> /> 
                 <input type="submit" name="submit" value="Search" /></p>
             </ul>
-            <hr/> 
-        -->
+            <hr/>
         <?php
             try {
 
              //collect search text data
 			$searchTxt = $_GET['searchText'];
 	         
-            if(!empty($searchTxt))
-            {
-
+            // echo $searchTxt;
             //search in articles
-			 $stmt = $db->prepare("SELECT articleID,articleTitle, articleDesc, articleIssueDate FROM Articles WHERE articleDesc like  '%".$searchTxt."%' ORDER BY articleIssueDate DESC");
-			 $stmt->execute(array());   
+			$stmt = $db->prepare("SELECT articleID,articleTitle, articleDesc, articleIssueDate FROM Articles WHERE articleIssueDate =( SELECT articleIssueDate from Articles where articleIssueDate <= str_to_date('".$searchTxt."','%Y-%m-%d') ORDER BY articleIssueDate DESC LIMIT 1)");
+			$stmt->execute(array());   
 
              while($row = $stmt->fetch()){
 				echo '<div>';
@@ -59,18 +56,6 @@ require('includes/config.php'); ?>
             	echo '</div>';
 				}
 
-                //search in wiki
-                $stmt1 = $db->prepare("SELECT wikiTitle, wikiDesc FROM Wiki WHERE wikiDesc like  '%".$searchTxt."%' ORDER BY wikiID DESC");
-                $stmt1->execute(array());   
-
-             while($row1 = $stmt1->fetch()){
-                echo '<div>';
-                     echo '<h1>'.$row1['wikiTitle'].'</h1>';
-                    echo '</p>';
-                    echo '<p>'.$row1['wikiDesc'].'</p>';                                
-                echo '</div>';
-                }
-            }
 			}catch(PDOException $e){
 				echo $e->getMessage();
 			}

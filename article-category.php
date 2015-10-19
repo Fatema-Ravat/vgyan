@@ -22,16 +22,16 @@ if($row['catID'] == ''){
 </head>
 <body>
 
-    <div id="wrapper">
+    
 
      <div id="header">
            <?php require('header.php'); ?> 
         
         </div>
-        <hr />
+      
 
-        <div id="main">  
-        <h1>Category: <?php echo $row['catTitle'];?></h1>
+        <div id="wrapper">  
+        <h2>Category: <?php echo $row['catTitle'];?></h2>
         
 
         <?php    
@@ -53,7 +53,7 @@ if($row['catID'] == ''){
             while($row = $stmt->fetch()){
                 
                 echo '<div>';
-                    echo '<h2><a href="'.$row['articleID'].'">'.$row['articleTitle'].'</a></h2>';
+                    echo '<h3><a href="'.$row['articleID'].'">'.$row['articleTitle'].'</a></h3>';
                     echo '<p>Posted on '.date('jS M Y H:i:s', strtotime($row['articleDateTime'])).' in ';
 
                         $stmt2 = $db->prepare('SELECT Category.catID, catTitle, catSlug    FROM Category, article_category WHERE Category.catID = article_category.catID AND article_category.articleID = :articleID');
@@ -80,12 +80,6 @@ if($row['catID'] == ''){
         }
 
         ?>
-    </div>
-
-    <div id="sidebar">
-        <?php require('sidebar.php'); ?>
-    </div>
-
     </div>
 
 

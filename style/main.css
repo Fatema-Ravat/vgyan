@@ -2,21 +2,28 @@
 margin:auto;
 width:960px;
 position: relative;
+background-color: #EDEDED;
+
 }
 
 #header {
 float:top;
+margin:auto;
 /*position: fixed;
 /*margin-top: 300px;*/
 width:960px;
 height: 200px;
-color: #000099;
+color: #C0C0C0;
 background: solid;
+ padding-bottom: 2%;
 
 }
 #minimenu{
 	float: right;
     padding-top: 10%;
+}
+#minimenu a {
+color: #C0C0C0;
 }
 #sidebar {
 float:left;
@@ -28,10 +35,7 @@ border-top: 2px solid black;
 border-bottom: 2px solid black;
 margin-right:20px;
 }
-#main {
-float:right;
-width:660px;
-}
+
 #login {
 border: 1px solid #AEAEAE;
 margin: 100px auto 0;
@@ -79,9 +83,14 @@ line-height: 1 em;
 text-align: center;
 }
 a {
-color: #000099;
+color: gray;
 text-decoration: none;
 }
+a:hover {
+    color: #000099;
+}
+
+
 form input {
 border: 1px solid #999999;
 border-bottom-color: #cccccc;

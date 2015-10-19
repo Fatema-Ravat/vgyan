@@ -60,19 +60,29 @@ if(!$user->is_logged_in()){ header('Location: login.php'); }
             $error[] = 'Please enter the article source.';
         }
 
+        if($articleIssueDate ==''){
+            $error[] = 'Please enter the article source.';
+        }
+      /*  if($articleIssueDate < current_date)
+        {
+          $error[] = 'Issue Date should be in future';
+        } */
+
         if(!isset($error)){
 
             try {
 
                 //insert into database
-                $stmt = $db->prepare('INSERT INTO articles (articleTitle,articleDesc,articleCont,articleDateTime,articleSource) 
-                  VALUES (:articleTitle, :articleDesc, :articleCont, :articleDateTime,:articleSource)') ;
+                $stmt = $db->prepare('INSERT INTO articles (articleTitle,articleDesc,articleCont,articleDateTime,articleSource,articleImage,articleIssueDate)
+                  VALUES (:articleTitle, :articleDesc, :articleCont, :articleDateTime,:articleSource,:articleImage,:articleIssueDate)') ;
                 $stmt->execute(array(
                     ':articleTitle' => $articleTitle,
                     ':articleDesc' => $articleDesc,
                     ':articleCont' => $articleCont,
                     ':articleDateTime' => date('Y-m-d H:i:s'),
-                    ':articleSource' => $articleSource
+                    ':articleSource' => $articleSource,
+                    ':articleImage' => $articleImage,
+                    ':articleIssueDate' => date('Y-m-d',strtotime($articleIssueDate))
                 ));
 
                 $articleID = $db->lastInsertId();
@@ -123,6 +133,12 @@ if(!$user->is_logged_in()){ header('Location: login.php'); }
 
         <p><label>Article Source</label></br>
         <input type='url' name='articleSource'></p>
+
+        <p><label>Article Image Link</label></br>
+        <input type='text' name='articleImage'></p>
+
+        <p><label>Article Issue Date</label></br>
+        <input type='date' name='articleIssueDate'></p>
 
         <fieldset>
           <legend>Categories</legend>

@@ -11,23 +11,19 @@ require('includes/config.php');
 </head>
 <body>
 
-    <div id="wrapper">
+    
 
        <div id="header">
            <?php require('header.php'); ?> 
         
         </div>
-        <hr />
+     
 
 
-        <div id="main">
+        <div id="wrapper">
             <p> Information about the website.</p>
         </div>
-          <div id="sidebar">
-            <?php require('sidebar.php'); ?>
-        </div>
-       
-    </div>
+        
 
 
 </body>
