@@ -28,7 +28,7 @@ require('includes/config.php'); ?>
             {
             
                 //search in wiki
-                $stmt1 = $db->prepare("SELECT wikiTitle, wikiDesc FROM Wiki WHERE wikiTitle = '".$wikiTitle."' ORDER BY wikiID DESC");
+                $stmt1 = $db->prepare("SELECT wikiTitle, wikiDesc FROM Wiki WHERE wikiTitle like '%".$wikiTitle."%' ORDER BY wikiID DESC");
                 $stmt1->execute(array());   
 
               if($row1 = $stmt1->fetch()){
